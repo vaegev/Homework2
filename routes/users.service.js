@@ -7,17 +7,20 @@ class UserService {
   }
 
   getUsers() {
-    return Promise.resolve(this.users);
+    return Promise.resolve(this.users.filter(val => !val.isDeleted));
   }
 
   getAutoSuggestUsers(loginSubstring, limit) {
-    const sugestedUsers = this.users.filter(val => val.login.match(new RegExp(`${loginSubstring}`)));
+    const sugestedUsers = this.users.filter(val =>
+      val.login.match(new RegExp(`${loginSubstring}`) && !val.isDeleted)
+    );
     
     if (sugestedUsers && sugestedUsers.length > 0) {
       return Promise.resolve(sugestedUsers.slice(0, limit));
     }
     return Promise.reject();
   }
+
   getUserById(id) {
     let user = this.users.find(val => !val.isDeleted && val.id === id);
     user = user ? { ...user } : null;
