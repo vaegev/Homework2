@@ -1,9 +1,9 @@
-import userService from '../../services/users.service';
+import UsersService from '../../services/users.service';
 
 const updateUsers = async (req, res, next) => {
     try {
-        const newUser = await userService.update(req.body, req.params.id);
-        res.json(newUser);
+        const newUser = await UsersService.update(req.params.id, req.body);
+        res.json(newUser[1][0]);
     } catch (e) {
         next(e);
     }

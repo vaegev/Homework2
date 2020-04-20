@@ -18,7 +18,7 @@ routes.map(value => app.use(value.route, require(value.path)));
 
 app.use((err, req, res, next) => {
     if (err) {
-        res.status(400).send(err);
+        res.status(400).send(err.stack);
     }
 });
 

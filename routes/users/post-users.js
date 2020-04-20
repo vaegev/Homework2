@@ -1,11 +1,11 @@
-import userService from '../../services/users.service';
+import UsersService from '../../services/users.service';
 
 const postUser = async (req, res, next) => {
     try {
-        const newUser = await userService.create(req.body);
+        const newUser = await UsersService.save(req.body);
         res.json(newUser);
     } catch (e) {
-        next(e);
+        return next(e);
     }
 };
 

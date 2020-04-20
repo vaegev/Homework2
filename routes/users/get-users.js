@@ -1,11 +1,8 @@
-import userService from '../../services/users.service';
+import UsersService from '../../services/users.service';
 
 const getUsers = async (req, res, next) => {
     try {
-        const users = await userService.getAutoSuggestUsers(
-            req.query.loginSubstring,
-            req.query.limit
-        );
+        const users = await UsersService.getAllUsers();
         res.json(users);
     } catch (e) {
         next(e);
