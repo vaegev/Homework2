@@ -1,4 +1,4 @@
 const routes = [
-    { route: '/users', path: './routes/users' }
+    { route: '/users', path: './users' }
 ];
-module.exports = routes;
+module.exports = (app) => routes.map(value => app.use(value.route, require(value.path)));

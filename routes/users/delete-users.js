@@ -1,12 +1,12 @@
-import UsersService from '../../services/users.service';
+import { deleteUserById } from '../../services/users.service';
 
 const deleteUser = async (req, res, next) => {
     try {
-        const user = await UsersService.delete(req.params.id);
+        const user = await deleteUserById(req.params.id);
         res.sendStatus(200);
     } catch (e) {
         next(e);
     }
 };
 
-module.exports = deleteUser;
+export default deleteUser;

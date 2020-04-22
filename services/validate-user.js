@@ -14,4 +14,4 @@ const querySchema = Joi.object({
         .required()
 });
 
-module.exports = querySchema;
+export default querySchema;

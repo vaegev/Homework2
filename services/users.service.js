@@ -1,25 +1,21 @@
 import Users from '../models/users.model';
 
-class UsersService {
-    delete(id) {
-        return Users.destroy({ where: { id } });
-    }
+export const deleteUserById = (id) => {
+    return Users.destroy({ where: { id } });
+};
 
-    getAllUsers() {
-        return Users.findAll();
-    }
+export const getAllUsers = () => {
+    return Users.findAll();
+};
 
-    save(body) {
-        return Users.create(body);
-    }
+export const save = (body) => {
+    return Users.create(body);
+};
 
-    update(id, body) {
-        return Users.update(body, { where: { id }, returning: true });
-    }
+export const update = (id, body) => {
+    return Users.update(body, { where: { id }, returning: true });
+};
 
-    findById(id) {
-        return Users.findByPk(id);
-    }
-}
-
-export default new UsersService();
+export const findById = (id) => {
+    return Users.findByPk(id);
+};

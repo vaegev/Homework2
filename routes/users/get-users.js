@@ -1,11 +1,11 @@
-import UsersService from '../../services/users.service';
+import {getAllUsers} from '../../services/users.service';
 
 const getUsers = async (req, res, next) => {
     try {
-        const users = await UsersService.getAllUsers();
+        const users = await getAllUsers();
         res.json(users);
     } catch (e) {
         next(e);
     }
 };
-module.exports = getUsers;
+export default getUsers;

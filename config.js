@@ -1,5 +1,15 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
+const sequelize = new Sequelize(process.env.DB_URL);
 
-const sequelize = new Sequelize('postgres://mkqqyajh:11Nz9WfNK9AF4JxdEOTgxwJSqunCRorU@drona.db.elephantsql.com:5432/mkqqyajh');
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+sequelize.sync();
 
-module.exports = sequelize;
+export default sequelize;
