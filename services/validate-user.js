@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-const querySchema = Joi.object({
+const userSchema = Joi.object({
     firstName: Joi.string(),
     lastName: Joi.string(),
     login: Joi.string()
@@ -14,4 +14,4 @@ const querySchema = Joi.object({
         .required()
 });
 
-export default querySchema;
+export { userSchema };
