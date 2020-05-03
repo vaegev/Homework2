@@ -1,7 +1,7 @@
 import sequelize from '../config';
 import crypto from 'crypto';
 
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { Model, Sequelize } from 'sequelize';
 
 class Users extends Model {
 }
@@ -36,7 +36,7 @@ Users.init({
     }
 }, {
     sequelize,
-    modelName: 'users'
+    modelName: 'user'
     // options
 });
 Users.generateSalt = function () {
