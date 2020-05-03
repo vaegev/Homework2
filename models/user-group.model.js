@@ -13,7 +13,7 @@ Groups.init({
     }
 }, { sequelize, modelName: 'group' });
 
-Groups.belongsToMany(Users, { through: 'UserGroup' });
+Groups.belongsToMany(Users, { through: 'UserGroup', onDelete: 'CASCADE' });
 Users.belongsToMany(Groups, { through: 'UserGroup' });
 
 export default Groups;
