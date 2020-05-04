@@ -1,5 +1,5 @@
 import sequelize from '../config';
-import { Model, Sequelize, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import Users from './users.model';
 import PERMISSIONS from '../constants/permissions';
 
@@ -14,6 +14,6 @@ Groups.init({
 }, { sequelize, modelName: 'group' });
 
 Groups.belongsToMany(Users, { through: 'UserGroup', onDelete: 'CASCADE' });
-Users.belongsToMany(Groups, { through: 'UserGroup' });
+Users.belongsToMany(Groups, { through: 'UserGroup', onDelete: 'CASCADE' });
 
 export default Groups;
