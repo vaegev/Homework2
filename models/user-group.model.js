@@ -7,9 +7,10 @@ class Groups extends Model {
 }
 
 Groups.init({
-    name: DataTypes.STRING,
+    name: { type: DataTypes.STRING, allowNull: false },
     permissions: {
-        type: DataTypes.ARRAY(DataTypes.ENUM({ values: PERMISSIONS }))
+        type: DataTypes.ARRAY(DataTypes.ENUM({ values: PERMISSIONS })),
+        allowNull: false
     }
 }, { sequelize, modelName: 'group' });
 

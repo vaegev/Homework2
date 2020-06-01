@@ -1,6 +1,11 @@
 import express from 'express';
 import { getGroupById, getAllGroups, createGroup, updateGroup, removeGroup } from '../../services/user-groups.service';
 import { addUsersToGroup } from '../../models/add-users-to-group';
+import { createValidator } from 'express-joi-validation';
+import groupSchema from '../../services/validate-group';
+
+const validator = createValidator({});
+
 
 const router = express.Router();
 
@@ -22,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validator.body(groupSchema), async (req, res, next) => {
     try {
         const newGroup = await createGroup(req.body);
         res.json(newGroup);
@@ -40,7 +45,7 @@ router.post('/:groupId', async (req, res, next) => {
     }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validator.body(groupSchema), async (req, res, next) => {
     try {
         const updatedGroup = await updateGroup(req.params.id, req.body);
         res.json(updatedGroup);
