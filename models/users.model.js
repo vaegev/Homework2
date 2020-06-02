@@ -18,7 +18,8 @@ Users.init({
     },
     login: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     password: {
         type: Sequelize.STRING,
@@ -57,5 +58,9 @@ const setSaltAndPassword = user => {
 };
 Users.beforeCreate(setSaltAndPassword);
 Users.beforeUpdate(setSaltAndPassword);
+
+Users.prototype.validPassword = function (enteredPassword) {
+    return Users.encryptPassword(enteredPassword, this.salt()) === this.password();
+};
 
 export default Users;
