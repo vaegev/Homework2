@@ -35,7 +35,7 @@ const JWTMiddleware = (req, res, next) => {
         res.status(401).json({ error: 'Unauthorized' });
     } else {
         try {
-            const decode = jwt.verify(req.get('Authorization'), process.env.SECRET_KEY, {});
+            const decode = jwt.verify(req.get('Authorization'), process.env.SECRET_KEY);
             if (decode.user) {
                 req.user = decode.user;
                 next();
