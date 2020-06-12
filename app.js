@@ -5,6 +5,8 @@ import logger from 'morgan';
 import routes from './routes/index';
 import cors from 'cors';
 import authRouter from './routes/auth';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger';
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', authRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 routes(app);
 
