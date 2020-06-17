@@ -13,7 +13,7 @@ export const save = (body) => {
 };
 
 export const update = (id, body) => {
-    return Users.update(body, { where: { id }, returning: true });
+    return Users.update(body, { where: { id }, returning: true , individualHooks: true});
 };
 
 export const findById = (id) => {
